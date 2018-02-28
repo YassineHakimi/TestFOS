@@ -1,0 +1,90 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{#
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}#}
+<br><br><br>
+<div class="container-fluid">
+    <section class="container">
+        <div class="container-page">
+            <div class="col-md-6">
+                <h3 class="dark-grey">Inscription</h3>
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                <div class="form-group col-lg-6">
+                    <label>Nom</label>
+                    {{ form_widget(form.firstname, {'attr' : {'class':'form-control'}}) }}
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Prenom</label>
+                    {{ form_widget(form.lastname, {'attr' : {'class':'form-control'}}) }}
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <label>Nom d'utilisateur</label>
+                    {{ form_widget(form.username, {'attr' : {'class':'form-control'}}) }}
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Password</label>
+                    {{ form_widget(form.plainPassword.first, {'attr' : {'class':'form-control'}}) }}
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Repeat Password</label>
+                    {{ form_widget(form.plainPassword.second, {'attr' : {'class':'form-control'}}) }}
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Email Address</label>
+                    {{ form_widget(form.email, {'attr' : {'class':'form-control'}}) }}
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Type</label>
+
+                    {{ form_widget(form.roles, {'attr' : {'class':'selectpicker'}}) }}
+
+                </div>
+
+
+
+                <div class="col-sm-6">
+                    <input type="checkbox" class="checkbox" />Sigh up for our newsletter
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="checkbox" class="checkbox" />Send notifications to this email
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="dark-grey">Terms and Conditions</h3>
+                <p>
+                    By clicking on "Register" you agree to The Company's' Terms and Conditions
+                </p>
+                <p>
+                    While rare, prices are subject to change based on exchange rate fluctuations -
+                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+                </p>
+                <p>
+                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+                </p>
+                <p>
+                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+                </p>
+
+                <button type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}">Register</button>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+</div><!-- /.container -->

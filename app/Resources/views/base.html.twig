@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html class="ie ie7"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="#{author}">
+    <meta name="keywords" content="#{keyword}">
+    <meta name="description" content="#{description}">
+
+    <title>{% block title %}Cupcakes{% endblock %}</title>
+
+    {% block Styles %}
+
+        <link href="apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="{{ asset('Front/favicon.png') }}" rel="icon">
+
+
+        <!-- Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/ps-icon/ps-icon.css') }}">
+        <!-- CSS Library-->
+        <link rel="stylesheet" href="{{  asset('Front/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/owl-carousel/assets/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/Magnific-Popup/dist/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/slick/slick/slick.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/revolution/css/settings.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/revolution/css/layers.css') }}">
+        <link rel="stylesheet" href="{{  asset('Front/plugins/revolution/css/navigation.css') }}">
+        <!-- Custom-->
+        <link rel="stylesheet" href="{{  asset('Front/css/style.css') }}">
+        <!--HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries-->
+        <!--WARNING: Respond.js') }} doesn't work if you view the page via file://-->
+        <!--[if lt IE 9]>
+
+
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    {% endblock %}
+</head>
+<!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 9]><body class="ie9 lt-ie10"><![endif]-->
+
+
+<div class="header--sidebar"></div>
+<header class="header" data-responsive="1199">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 ">
+                    {#<p>460 West 34th Street, 15th floor, New York - Hotline: 804-377-3580 - 804-399-3580</p>#}
+                </div>
+                {% if app.user %}
+                    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 "><a class="ps-search-btn" href="#"><i class="ps-icon--search"></i></a>
+                        <div class="btn-group ps-dropdown">
+                            <a  href="{{ path('fos_user_security_logout') }}">
+                                Deconnexion</a>
+
+                            </a>
+                        </div>
+                        <div class="btn-group ps-dropdown">
+
+                            {% if is_granted('ROLE_ADMIN') == true %}
+                            <a  href="{{ path('back_office_homepage_admin') }}">
+                                Mon Profil ({{ app.user.username }})</a>
+
+                            </a>
+                            {% elseif is_granted('ROLE_BRAND') == true %}
+                            <a  href="{{ path('back_office_homepage_brand') }}">
+                                Mon Profil ({{ app.user.username }})</a>
+
+                            </a>
+                            {% elseif is_granted('ROLE_BAKERY') == true %}
+                            <a  href="{{ path('back_office_homepage_bakery') }}">
+                                Mon Profil ({{ app.user.username }})</a>
+
+                            </a>
+                            {% elseif is_granted('ROLE_USER') == true %}
+                                <a  href="{{ path('fos_user_profile_edit') }}">
+                                    Mon Profil ({{ app.user.username }})</a>
+
+                                </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                {% elseif not app.user %}
+                    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 "><a class="ps-search-btn" href="#"><i class="ps-icon--search"></i></a>
+                        <div class="btn-group ps-dropdown">
+                            <a  href="{{ path('fos_user_registration_register') }}">
+                                Inscription</a>
+
+                            </a>
+                        </div>
+                        <div class="btn-group ps-dropdown">
+                            <a type="button" href="{{ path('fos_user_security_login') }}">
+                                Connexion
+                            </a>
+
+                        </div>
+
+
+
+
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <a class="ps-logo" href="{{ path('front_homepage') }}"><img src="{{asset('Front/images/logo-1.png')}}" alt=""></a>
+
+
+
+
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="menu-toggle"><span></span></div>
+            <div class="navigation__left">
+                <ul class="menu menu--left">
+                    <li class="current menu-item-has-children"><a href="{{ path('front_homepage') }}">Home</a>
+                        {#<ul class="sub-menu">
+                            <li><a href="#">Hot Demo</a></li>
+                            <li class="end-block"><a href="#">Trending</a></li>
+                            <li class="current "><a href="index.html">HOMEPAGE 1</a></li>
+                            <li class="current "><a href="homepage-2.html">HOMEPAGE 2</a></li>
+                            <li class="current "><a href="homepage-3.html">HOMEPAGE 3</a></li>
+                            <li class="try-theme"><a href="#">Try Theme Now</a></li>
+                        </ul>#}
+                    </li>
+                    <li><a href="{{ path('front_Aboutpage') }}">About</a></li>
+                    <li class="menu-item-has-children"><a href="{{ path('products_page') }}">Products</a>
+                        {#<ul class="sub-menu">
+                            <li><a href="product-listing.html">Product Listing</a></li>
+                            <li><a href="product-grid.html">Product Grid</a></li>
+                            <li><a href="#">Product Detail</a></li>
+                        </ul>#}
+                    </li>
+
+                    <li class="menu-item-has-children"><a href="{{ path('categories_page') }}">Categories</a>
+                        {#<ul class="sub-menu">
+                            <li><a href="menu-1.html">Menu 1</a></li>
+                            <li><a href="menu-2.html">Menu 2</a></li>
+                            <li><a href="order-form.html">Order Form</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="404.html">404 Page</a></li>
+                        </ul>#}
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+            <div class="navigation__right">
+                <ul class="menu menu--right">
+
+                    {{ render(controller('BakeryManagementBundle:Enseigne:listfront')) }}
+
+                    <li><a href="#">Gallery</a></li>
+                    {#<li class="menu-item-has-children"><a href="blog-listing.html">Blogs</a>
+                        <ul class="sub-menu">
+                            <li><a href="blog-detail.html">Blog Detail</a></li>
+                        </ul>
+                    </li>#}
+                    <li class="menu-item-has-children"><a href="{{ path('fos_message_inbox') }}">Contact</a>
+                        {#<ul class="sub-menu">
+                            <li><a href="contact.html">Contact 1</a></li>
+                            <li><a href="contact-2.html">Contact 2</a></li>
+                        </ul>#}
+                    </li>
+                </ul>
+                {{ render(controller('EcommerceBundle:Panier:menu')) }}
+
+            </div>
+        </div>
+        </div>
+    </nav>
+    {#{% endblock header %}#}
+</header>
+
+
+
+
+<div id="back2top"><i class="fa fa-angle-up"></i></div>
+{#{% block slider %}#}{#
+<div class="page-wrap">
+    <div class="ps-banner--home-1">
+        <div class="rev_slider_wrapper fullscreen-container" id="revolution-slider-1" data-alias="concept121" data-source="gallery" style="background-color:#000000;padding:0px;">
+            <div class="rev_slider fullscreenbanner" id="rev_slider_1059_1" style="display:none;" data-version="5.4.1">
+                <ul class="ps-banner">
+
+                    <li data-index="rs-2972" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="../../assets/images/concept4-100x100.jpg" data-rotate="0" data-saveperformance="off" data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description=""><img class="rev-slidebg" src="{{ asset('Front/images/banner/img-slider-1.jpg') }}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" data-no-retina>
+                        <div class="tp-caption ps-banner__caption" id="layer01" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-100','-80','-120','-120']" data-width="['none','none','none','400']" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-responsive_offset="on" data-frames="[{&quot;from&quot;:&quot;z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:1700,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1000,&quot;to&quot;:&quot;x:left(R);&quot;,&quot;ease&quot;:&quot;Power3.easeIn&quot;}]" style="z-index: 7; white-space: nowrap;text-transform:left;">We Implement Sweet Dream</div>
+                        <div class="tp-caption ps-banner__description" id="layer02" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;from&quot;:&quot;z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:1500,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1000,&quot;to&quot;:&quot;x:left(R);&quot;,&quot;ease&quot;:&quot;Power3.easeIn&quot;}]">Carrot cake macaroon topping jelly-o dessert cake. Tiramisu gummies wafer brownie tiramisu cake.
+                            <br/> Icing powder candy canes cotton candy pie liquorice.</div><a class="tp-caption ps-btn ps-btn--lg" href="#" id="layer03" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['80','70','70','70']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;from&quot;:&quot;z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:1500,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1000,&quot;to&quot;:&quot;x:left(R);&quot;,&quot;ease&quot;:&quot;Power3.easeIn&quot;}]">TRY OUR CUPCAKES <i class="fa fa-angle-right"></i></a>
+                    </li>
+                    <li data-index="rs-2973" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="../../assets/images/concept4-100x100.jpg" data-rotate="0" data-saveperformance="off" data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description=""><img class="rev-slidebg" src="images/banner/img-slider-2.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" data-no-retina>
+                        <div class="tp-caption ps-banner__caption" id="layer04" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-100','-80','-120','-120']" data-width="['none','none','none','400']" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-responsive_offset="on" data-frames="[{&quot;from&quot;:&quot;z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:1700,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1000,&quot;to&quot;:&quot;x:left(R);&quot;,&quot;ease&quot;:&quot;Power3.easeIn&quot;}]" style="z-index: 7; white-space: nowrap;text-transform:left;">A little bliss in every bite</div>
+                        <div class="tp-caption ps-banner__description" id="layer05" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;from&quot;:&quot;z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:1500,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1000,&quot;to&quot;:&quot;x:left(R);&quot;,&quot;ease&quot;:&quot;Power3.easeIn&quot;}]">Macaroon lollipop gummi bears liquorice sweet. Icing dessert sweet apple pie chocolate cake. Jujubes halvah cupcake cheesecake.</div><a class="tp-caption ps-btn ps-btn--lg" href="#" id="layer06" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['80','70','70','70']" data-type="text" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-frames="[{&quot;from&quot;:&quot;z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:1500,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1000,&quot;to&quot;:&quot;x:left(R);&quot;,&quot;ease&quot;:&quot;Power3.easeIn&quot;}]">ORDER NOW <i class="fa fa-angle-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    #}{#{% endblock slider %}
+
+
+
+
+
+
+
+
+
+
+    {% block content1 %} {% endblock %}
+    {% block content %}{% endblock %}#}{#
+
+
+
+    #}{#{% block bestproduits %}#}{#
+    <section class="ps-section ps-section--best-seller pt-40 pb-100">
+        <div class="container">
+            <div class="ps-section__header text-center mb-50">
+                <h4 class="ps-section__top">Sweet Cupcakes</h4>
+                <h3 class="ps-section__title ps-section__title--full">BEST SELLER</h3>
+            </div>
+            <div class="ps-section__content">
+                <div class="owl-slider owl-slider--best-seller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="false" data-owl-animate-in="" data-owl-animate-out="" data-owl-item="4" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-nav-left="&lt;i class=&quot;ps-icon--back&quot;&gt;&lt;/i&gt;" data-owl-nav-right="&lt;i class=&quot;ps-icon--next&quot;&gt;&lt;/i&gt;">
+                    <div class="ps-product">
+                        <div class="ps-product__thumbnail">
+                            <div class="ps-badge"><span>-50%</span></div>
+                            <a class="ps-product__overlay" href="#"></a><img src="images/cake/img-cake-7.jpg" alt="">
+                            <ul class="ps-product__action">
+                                <li><a class="popup-modal" href="#quickview-modal" data-effect="mfp-zoom-out" data-tooltip="View"><i class="ps-icon--search"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to wishlist"><i class="ps-icon--heart"></i></a></li>
+                                <li><a href="#" data-tooltip="Compare"><i class="ps-icon--reload"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to cart"><i class="ps-icon--shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="ps-product__content"><a class="ps-product__title" href="#">Red sugar flower</a>
+                            <div class="ps-product__category"><a class="ps-product__category" href="product-listing.html">cupcake</a><a class="ps-product__category" href="product-listing.html">sweet</a><a class="ps-product__category" href="product-listing.html">bio</a>
+                            </div>
+                            <select class="ps-rating">
+                                <option value="1">1</option>
+                                <option value="1">2</option>
+                                <option value="1">3</option>
+                                <option value="1">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p class="ps-product__price">£5.00</p>
+                        </div>
+                    </div>
+                    <div class="ps-product">
+                        <div class="ps-product__thumbnail">
+                            <a class="ps-product__overlay" href="#"></a><img src="images/cake/img-cake-2.jpg" alt="">
+                            <ul class="ps-product__action">
+                                <li><a class="popup-modal" href="#quickview-modal" data-effect="mfp-zoom-out" data-tooltip="View"><i class="ps-icon--search"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to wishlist"><i class="ps-icon--heart"></i></a></li>
+                                <li><a href="#" data-tooltip="Compare"><i class="ps-icon--reload"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to cart"><i class="ps-icon--shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="ps-product__content"><a class="ps-product__title" href="#">Cupcake Queen</a>
+                            <div class="ps-product__category"><a class="ps-product__category" href="product-listing.html">cupcake</a><a class="ps-product__category" href="product-listing.html">sweet</a><a class="ps-product__category" href="product-listing.html">bio</a>
+                            </div>
+                            <select class="ps-rating">
+                                <option value="1">1</option>
+                                <option value="1">2</option>
+                                <option value="1">3</option>
+                                <option value="1">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p class="ps-product__price">£5.00</p>
+                        </div>
+                    </div>
+                    <div class="ps-product">
+                        <div class="ps-product__thumbnail">
+                            <div class="ps-badge"><span>-50%</span></div>
+                            <a class="ps-product__overlay" href="#"></a><img src="images/cake/img-cake-4.jpg" alt="">
+                            <ul class="ps-product__action">
+                                <li><a class="popup-modal" href="#quickview-modal" data-effect="mfp-zoom-out" data-tooltip="View"><i class="ps-icon--search"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to wishlist"><i class="ps-icon--heart"></i></a></li>
+                                <li><a href="#" data-tooltip="Compare"><i class="ps-icon--reload"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to cart"><i class="ps-icon--shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="ps-product__content"><a class="ps-product__title" href="#">Cupcake Glory</a>
+                            <div class="ps-product__category"><a class="ps-product__category" href="product-listing.html">cupcake</a><a class="ps-product__category" href="product-listing.html">sweet</a><a class="ps-product__category" href="product-listing.html">bio</a>
+                            </div>
+                            <select class="ps-rating">
+                                <option value="1">1</option>
+                                <option value="1">2</option>
+                                <option value="1">3</option>
+                                <option value="1">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p class="ps-product__price">£5.00</p>
+                        </div>
+                    </div>
+                    <div class="ps-product">
+                        <div class="ps-product__thumbnail">
+                            <div class="ps-badge ps-badge--new"><span>New</span></div>
+                            <a class="ps-product__overlay" href="#"></a><img src="images/cake/img-cake-8.jpg" alt="">
+                            <ul class="ps-product__action">
+                                <li><a class="popup-modal" href="#quickview-modal" data-effect="mfp-zoom-out" data-tooltip="View"><i class="ps-icon--search"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to wishlist"><i class="ps-icon--heart"></i></a></li>
+                                <li><a href="#" data-tooltip="Compare"><i class="ps-icon--reload"></i></a></li>
+                                <li><a href="#" data-tooltip="Add to cart"><i class="ps-icon--shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="ps-product__content"><a class="ps-product__title" href="#">Sweet Cakes</a>
+                            <div class="ps-product__category"><a class="ps-product__category" href="product-listing.html">cupcake</a><a class="ps-product__category" href="product-listing.html">sweet</a><a class="ps-product__category" href="product-listing.html">bio</a>
+                            </div>
+                            <select class="ps-rating">
+                                <option value="1">1</option>
+                                <option value="1">2</option>
+                                <option value="1">3</option>
+                                <option value="1">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p class="ps-product__price">£5.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    #}{#{% endblock bestproduits %}#}
+
+
+    {% block content %}
+    {% endblock %}
+
+    <section class="ps-section ps-section--subscribe pt-80 pb-80">
+        <div class="container">
+            <div class="ps-subscribe">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                        <h4>ABOUT US</h4>
+                        <p>Te pri oblique ullamcorper, magna persequeris has eu. Mei prompta dolores examad debet suavitate. Pri te vocibus electram. Eu eleifend rationibus vis, at.</p>
+                        <p class="text-uppercase ps-subscribe__highlight">240 CENTRAL PARK, LONDON, OR 10019</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
+                        <a class="ps-subscribe__logo" href="index.html"><img src="images/logo-1.png" alt=""></a>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                        <h4>SUBSCRIBE EMAIL</h4>
+                        <p>Give us your email, and we shall send regular updates for new stuff and events.</p>
+                        <form class="ps-subscribe__form" method="post" action="_action">
+                            <input class="form-control" type="text" placeholder="Type your email...">
+                            <button class="ps-btn ps-btn--sm">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="ps-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="ps-widget ps-widget--footer ps-widget--payment">
+                        <div class="ps-widget__header">
+                            <h3 class="ps-widget__title">PAYMENTS ACCEPTED</h3>
+                        </div>
+                        <div class="ps-widget__content">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="images/payment/1.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/payment/2.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/payment/3.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/payment/4.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="images/payment/5.png" alt=""></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="ps-widget ps-widget--footer ps-widget--worktime">
+                        <div class="ps-widget__header">
+                            <h3 class="ps-widget__title">WORK TIME</h3>
+                        </div>
+                        <div class="ps-widget__content">
+                            <p><strong>Monday - Friday</strong> 8:00 am - 8:30 pm</p>
+                            <p><strong>Satuday - Sunday</strong>10:00 am - 16:30 pm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="ps-widget ps-widget--footer ps-widget--order">
+                        <div class="ps-widget__header">
+                            <h3 class="ps-widget__title">ORDERS AND RETURNS</h3>
+                        </div>
+                        <div class="ps-widget__content">
+                            <ul class="ps-list--line">
+                                <li><a href="#">Order</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Policy Return Policy</a></li>
+                                <li><a href="#">Payments</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="ps-widget ps-widget--footer ps-widget--connect">
+                        <div class="ps-widget__header">
+                            <h3 class="ps-widget__title">CONNECT US</h3>
+                        </div>
+                        <div class="ps-widget__content">
+                            <ul class="ps-widget__social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                            <a href="#"><img src="images/app.jpg" alt=""></a>
+                            <p>@2017 Design by<a href="#"> Alena Studio</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</div>
+
+
+{% block Scripts %}
+<!-- JS Library-->
+<script type="text/javascript" src="{{  asset('Front/plugins/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/overflow-text.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/masonry.pkgd.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/imagesloaded.pkgd.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/jquery-bar-rating/dist/jquery.barrating.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/moment.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/slick/slick/slick.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/skrollr.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/gmap3.min.js') }}"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx39JFH5nhxze1ZydH-Kl8xXM3OK4fvcg&amp;region=GB"></script>
+<!-- Revolution - slider-->
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+<script type="text/javascript" src="{{  asset('Front/plugins/revolution/js/extensions/revolution.extension.actions.min.js') }}"></script>
+<!-- Custom scripts-->
+
+
+
+{% endblock %}
+<script type="text/javascript" src="{{  asset('Front/js/main.js') }}"></script>
+</html>

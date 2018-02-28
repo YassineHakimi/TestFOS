@@ -1,0 +1,99 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <br><br><br>
+    <style>
+        .profile-usermenu ul li.active {
+            border-bottom: none;
+        }
+
+        .profile-usermenu ul li.active a {
+            color: #5b9bd1;
+            background-color: #f6f9fb;
+            border-left: 2px solid #5b9bd1;
+            margin-left: -2px;
+        }
+
+    </style>
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="col-md-2 ">
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Mon Profil </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_profile_edit') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Informations personnelles </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('useralladdresses') }}">
+                                <i class="glyphicon glyphicon-globe"></i>
+                                Mes adresses </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('userallorders') }}">
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                                Mes commandes </a>
+                        </li>
+
+                        {% if is_granted('ROLE_DELIVERYMAN') %}
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                                    Mes livraisons </a>
+                            </li>
+                        {% endif %}
+                        <li>
+                            <a href="{{ path('list_favorite') }}">
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                                Favoris </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="alert alert-info">
+                    <h4>Bonjour {{ app.user.firstname }} {{ app.user.lastname }} </h4>
+                    <p>
+                        À partir de votre compte, vous pouvez obtenir l'historique de vos commandes et mettre à jour vos informations.
+                    </p>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label>Nom </label>
+                    {{ app.user.firstname }}
+                </div>
+                <div class="form-group col-lg-4">
+                    <label>Prenom</label>
+                    {{ app.user.lastname }}
+
+                </div>
+                <div class="form-group col-lg-4">
+                    <label>Date de naissance</label>
+                    {{ app.user.birthday|date('Y-m-d') }}
+                </div>
+                <div class="form-group col-lg-4">
+                    <label>Telephone</label>
+                    {{ app.user.phonenumber }}
+                </div>
+                <div class="form-group col-lg-4">
+                    <label>CIN</label>
+                    {{ app.user.cin }}
+
+                </div>
+
+
+
+            </div>
+        </div>
+        <!-- ROW END -->
+
+
+        </section>
+        <!-- SECTION END -->
+    </div></div>
